@@ -6,7 +6,7 @@ Illustrator draw = method(board,
       row each(space,
         illustration += "[" + space_marker(space) + "]")
       illustration += "\n")
-    illustration)
+    illustration += "\n")
 
 Illustrator space_marker = method(space_value,
     cond(

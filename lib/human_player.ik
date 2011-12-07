@@ -5,18 +5,22 @@ HumanPlayer initialize = method(marker_value,
 
 HumanPlayer get_move = method(board,
     move = []
-    bind(
-      handle(Condition Error Arithmetic NotParseable, fn(c, "Please enter a real number...jerk." println))
-      )
     ["row", "column"] each(position,
       input = -1
       until(valid_input?(input, board),
         prompt_for_move(position, board)
-        input = System in read asText toRational - 1
+        bind(
+          rescue(fn(c, "Please enter a real number...jerk." println)),
+          input = parse_move_input
+          )
         move << input
         )
       )
     move
+    )
+
+HumanPlayer parse_move_input = method(
+    System in read asText toRational - 1
     )
 
 HumanPlayer prompt_for_move = method(position, board,

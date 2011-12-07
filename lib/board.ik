@@ -58,3 +58,7 @@ Board get_forward_diagonal = method(
     self dimension times(index,
       diagonal << get_space(self dimension - 1 - index, index))
     diagonal)
+
+Board middle_index = method(
+    (dimension - (dimension % 2)) / 2 ; Ioke doesn't have Integer divsion or rounding. performing (3/2) will yield a "Ratio" of 3/2, which you can't do much with
+    )

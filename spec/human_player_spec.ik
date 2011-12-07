@@ -26,4 +26,5 @@ describe("HumanPlayer",
       player valid_input?(3, board) should be false
       player valid_input?(-1, board) should be false
       )
+
     )

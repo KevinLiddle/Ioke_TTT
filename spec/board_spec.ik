@@ -69,4 +69,9 @@ describe("Board",
         board set_space(2,2,-1)
         board full? should be true
       )
+
+    it("gets the index of the middle of the board",
+      board middle_index should == 1
+      Board mimic(7) middle_index should == 3
+      )
     )

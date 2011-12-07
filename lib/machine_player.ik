@@ -7,12 +7,12 @@ MachinePlayer initialize = method(marker_value,
     )
 
 MachinePlayer get_move = method(board,
-    if(board get_space(middle_of_board(board), middle_of_board(board)) == 0,
-      [middle_of_board(board), middle_of_board(board)],
+    if(board get_space(board middle_index, board middle_index) == 0,
+      [ board middle_index, board middle_index ],
       minimax(board, marker_value, 1) keys first
       )
     )
-; DOES NOT WORK YET. need to compare weights based on player value
+
 MachinePlayer minimax = method(board, turn, depth,
     best_move = {}
     board dimension times(row,
@@ -20,13 +20,13 @@ MachinePlayer minimax = method(board, turn, depth,
         if(board get_space(row, column) == 0,
           board set_space(row, column, turn)
           if(Rules game_over?(board),
-            if(best_move == {} or better_than_best?(inverse(Rules winner(board) * (depth + 1)), best_move[best_move keys first]),
+            if( better_than_best?(inverse(Rules winner(board) * (depth + 1)), best_move, turn),
               best_move = { [row, column] => inverse( Rules winner(board) * (depth + 1) ) }
               )
             ,
             next_level_best_move = minimax(board, turn negation, depth + 1)
-            next_move = { [row, column] => next_level_best_move[next_level_best_move keys first] }
-            if( best_move == {} or better_than_best?(next_move[next_move keys first], best_move[best_move keys first]),
+            next_move = { [row, column] => get_score(next_level_best_move) }
+            if( better_than_best?( get_score(next_move), best_move, turn ),
               best_move = next_move
               )
             )
@@ -37,15 +37,11 @@ MachinePlayer minimax = method(board, turn, depth,
     best_move
     )
 
-MachinePlayer better_than_best? = method(score, best_move_score,
-    if(marker_value > 0,
-      score > best_move_score,
-      score < best_move_score
+MachinePlayer better_than_best? = method(score, best_move, turn,
+    best_move == {} or if(turn > 0,
+      score > get_score(best_move),
+      score < get_score(best_move)
       )
-    )
-
-MachinePlayer middle_of_board = method(board,
-    (board dimension - (board dimension % 2)) / 2 ; Ioke doesn't have Integer divsion or rounding. performing (3/2) will yield a "Ratio" of 3/2, which you can't do much with
     )
 
 MachinePlayer inverse = method(value,
@@ -53,4 +49,8 @@ MachinePlayer inverse = method(value,
       1 / value,
       0
       )
+    )
+
+MachinePlayer get_score = method(move,
+    move[move keys first]
     )
