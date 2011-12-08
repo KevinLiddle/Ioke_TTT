@@ -11,9 +11,9 @@ Game initialize = method(game_type,
     self player1 = nil
     self player2 = nil
     cond(
-      game_type == 1, human_vs_human,
-      game_type == 2, machine_vs_human,
-      game_type == 3, human_vs_machine,
+      game_type == "1", human_vs_human,
+      game_type == "2", machine_vs_human,
+      game_type == "3", human_vs_machine,
       human_vs_human
       )
     )
@@ -48,11 +48,7 @@ Game take_turn = method(
     )
 
 Game player_by_turn = method(
-    total_moves = 0
-    self board dimension times(row,
-      self board dimension times(column,
-        if(self board get_space(row, column) != 0,
-          total_moves++)))
+    total_moves = board spaces flatten remove!(0) length
     if(total_moves % 2 == 0,
       player1,
       player2)

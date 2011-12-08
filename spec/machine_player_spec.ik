@@ -24,8 +24,22 @@ describe("MachinePlayer",
       )
 
     it("compares scores based on the player's marker value",
-      MachinePlayer better_than_best?(1/3, {[2,1] => -1/8}, 1) should be true
-      MachinePlayer better_than_best?(1/3, {[2,1] => -1/8}, -1) should be false
+      MachinePlayer better_move_than_best_move?(1/3, {[2,1] => -1/8}, 1) should be true
+      MachinePlayer better_move_than_best_move?(1/3, {[2,1] => -1/8}, -1) should be false
+      )
+
+    it("calculates the score of a move based on how many moves it takes to get the game to end",
+      board set_space(0,0,1)
+      board set_space(0,1,-1)
+      board set_space(0,2,-1)
+      board set_space(1,0,1)
+      board set_space(1,1,1)
+      board set_space(1,2,-1)
+      board set_space(2,0,1)
+      board set_space(2,1,1)
+      board set_space(2,2,0)
+      depth = 3
+      MachinePlayer move_score(board, depth) should == 1/3
       )
 
     it("will pick the middle if available",

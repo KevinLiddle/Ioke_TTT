@@ -13,8 +13,8 @@ HumanPlayer get_move = method(board,
           rescue(fn(c, "Please enter a real number...jerk." println)),
           input = parse_move_input
           )
-        move << input
         )
+      move << input
       )
     move
     )

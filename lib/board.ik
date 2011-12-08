@@ -20,32 +20,30 @@ Board set_space = method(row, column, player_value,
     )
 
 Board blank? = method(
-    blank = true
-    dimension times(row,
-      dimension times(column,
-        unless(get_space(row, column) == 0,
-          blank = false)))
-    blank)
+    self spaces flatten remove!(0) length == 0
+    )
 
 Board full? = method(
-    full = true
-    dimension times(row,
-      dimension times(column,
-        if(get_space(row, column) == 0,
-          full = false)))
-    full)
+    self spaces flatten include?(0) not
+    )
+
+Board empty_at? = method(row, column,
+    get_space(row, column) == 0
+    )
+
+Board reset_space = method(row, column,
+    set_space(row, column, 0)
+    )
 
 Board reset! = method(
-    self spaces = initialize_spaces)
+    self spaces = self spaces map(map(0)))
 
 Board get_row = method(row_index,
     self spaces[row_index])
 
 Board get_column = method(column_index,
-    column = []
-    self dimension times(row_index,
-      column << get_space(row_index, column_index))
-    column)
+    self spaces map([column_index])
+    )
 
 Board get_back_diagonal = method(
     diagonal = []

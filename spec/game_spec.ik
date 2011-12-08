@@ -3,7 +3,7 @@ use("lib/game")
 
 describe("Game",
 
-    before(game = Game mimic(1))
+    before(game = Game mimic("1"))
 
     it("initializes a game with a board",
       game board should not be nil
@@ -63,13 +63,13 @@ describe("Game",
       )
 
     it("creates 1 machine player and 1 human player for game type 2",
-      game1 = Game mimic(2)
+      game1 = Game mimic("2")
       game1 player1 kind should == "MachinePlayer"
       game1 player2 kind should == "HumanPlayer"
       )
 
     it("creates 1 human player and 1 machine player for game type 3",
-      game2 = Game mimic(3)
+      game2 = Game mimic("3")
       game2 player1 kind should == "HumanPlayer"
       game2 player2 kind should == "MachinePlayer"
       )

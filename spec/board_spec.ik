@@ -74,4 +74,19 @@ describe("Board",
       board middle_index should == 1
       Board mimic(7) middle_index should == 3
       )
+
+    it("tells if a space is empty",
+      board empty_at?(0,2) should be true
+      board empty_at?(1,1) should be true
+      board set_space(2,2,1)
+      board empty_at?(2,2) should be false
+      )
+
+    it("resets a given space",
+      board empty_at?(1,1) should be true
+      board set_space(1,1,1)
+      board empty_at?(1,1) should be false
+      board reset_space(1,1)
+      board empty_at?(1,1) should be true
+      )
     )
