@@ -12,5 +12,5 @@ GameRunner get_game_type = method(
     )
 
 GameRunner prompt_for_game_type = method(
-    "Please choose a game type.\n1: Human vs. Human\n2: Machine vs. Human\n3: Human vs. Machine\n0: Quit\nYour Choice: " print
+    "Please choose a game type.\n1: Human vs. Human\n2: Machine vs. Human\n3 (Default): Human vs. Machine\n0: Quit\nYour Choice: " print
     )
