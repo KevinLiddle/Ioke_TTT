@@ -23,6 +23,28 @@ describe("MachinePlayer",
       MachinePlayer get_score(move) should == 1/5
       )
 
+    it("knows if the other player took middle",
+      player other_player_took_middle(board) should be false
+
+      board set_space(1,1,-1)
+
+      player other_player_took_middle(board) should be true
+      )
+
+    it("knows of an immediate winning move",
+      board set_space(0,0,1)
+      board set_space(0,1,1)
+
+      player immediate_winning_move(board) should == [0,2]
+      )
+
+    it("knows of an immediate blocking move",
+      board set_space(0,0,-1)
+      board set_space(0,1,-1)
+
+      player immediate_blocking_move(board) should == [0,2]
+      )
+
     it("compares scores based on the player's marker value",
       MachinePlayer better_move_than_best_move?(1/3, {[2,1] => -1/8}, 1) should be true
       MachinePlayer better_move_than_best_move?(1/3, {[2,1] => -1/8}, -1) should be false
@@ -42,8 +64,16 @@ describe("MachinePlayer",
       MachinePlayer move_score(board, depth) should == 1/3
       )
 
-    it("will pick the middle if available",
-      player get_move(board) should == [1,1]
+    it("will pick a corner if the board is blank",
+      board corners include?(player get_move(board)) should be true
+      )
+
+    it("takes the middle on first move if it goes 2nd",
+      player2 = MachinePlayer mimic(-1)
+
+      board set_space(0,0,1)
+
+      player2 get_move(board) should == [1,1]
       )
 
     it("will win if it can",

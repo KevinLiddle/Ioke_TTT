@@ -60,3 +60,11 @@ Board get_forward_diagonal = method(
 Board middle_index = method(
     (dimension - (dimension % 2)) / 2 ; Ioke doesn't have Integer divsion or rounding. performing (3/2) will yield a "Ratio" of 3/2, which you can't do much with
     )
+
+Board corners = method(
+    [[0,0], [0, dimension - 1], [dimension - 1, dimension - 1], [dimension - 1, 0]]
+    )
+
+Board number_of_moves = method(
+    self spaces flatten select(n, n != 0) size
+    )

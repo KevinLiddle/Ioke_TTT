@@ -89,4 +89,17 @@ describe("Board",
       board reset_space(1,1)
       board empty_at?(1,1) should be true
       )
+
+    it("returns a list of the corners",
+      board corners should == [[0,0], [0,2], [2,2], [2,0]]
+      )
+
+    it("gets the number of moves made so far",
+      board number_of_moves should == 0
+
+      board set_space(0,0,1)
+      board set_space(1,1,-1)
+
+      board number_of_moves should == 2
+      )
     )
