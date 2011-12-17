@@ -38,7 +38,7 @@ Game play = method(
       take_turn
       )
     display_board
-    game_over_message println
+    print_game_over_message
     )
 
 Game take_turn = method(
@@ -61,10 +61,6 @@ Game make_move = method(row, column,
 Game display_board = method(
     Illustrator draw(self board) print)
 
-Game game_over_message = method(
-    cond(
-      Rules winner(self board) == 1, "Player 1 wins!",
-      Rules winner(self board) == -1, "Player 2 wins!",
-      Rules winner(self board) == 0, "Cat's Game..."
-      )
+Game print_game_over_message = method(
+    Illustrator game_over_message(self board) println
     )

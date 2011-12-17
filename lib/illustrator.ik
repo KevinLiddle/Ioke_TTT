@@ -14,3 +14,11 @@ Illustrator space_marker = method(space_value,
       space_value == -1, "O",
       space_value == 0, " ",
       "?"))
+
+Illustrator game_over_message = method(board,
+    cond(
+      Rules winner(board) == 1, "Player 1 wins!",
+      Rules winner(board) == -1, "Player 2 wins!",
+      Rules winner(board) == 0, "Cat's Game..."
+      )
+    )

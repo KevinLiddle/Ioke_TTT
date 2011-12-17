@@ -30,33 +30,6 @@ describe("Game",
       game board get_space(2, 1) should == 1
       )
 
-    it("creates a game over message for player 1 win",
-      game board set_space(0,0,1)
-      game board set_space(0,1,1)
-      game board set_space(0,2,1)
-      game game_over_message should == "Player 1 wins!"
-      )
-
-    it("creates a game over message for player 2 win",
-      game board set_space(0,0,-1)
-      game board set_space(0,1,-1)
-      game board set_space(0,2,-1)
-      game game_over_message should == "Player 2 wins!"
-      )
-
-    it("creates a game over message for a Cat's game",
-      game board set_space(0,0,1)
-      game board set_space(0,1,1)
-      game board set_space(0,2,-1)
-      game board set_space(1,0,-1)
-      game board set_space(1,1,-1)
-      game board set_space(1,2,1)
-      game board set_space(2,0,1)
-      game board set_space(2,1,-1)
-      game board set_space(2,2,1)
-      game game_over_message should == "Cat's Game..."
-      )
-
     it("creates 2 human players for game type 1",
       game player1 kind should == "HumanPlayer"
       game player2 kind should == "HumanPlayer"
@@ -72,5 +45,18 @@ describe("Game",
       game2 = Game mimic("3")
       game2 player1 kind should == "HumanPlayer"
       game2 player2 kind should == "MachinePlayer"
+      )
+
+    it("prints the board and the game over message when the game is done",
+      game board set_space(0,0,1)
+      game board set_space(0,1,1)
+      game board set_space(0,2,1)
+      game board set_space(1,0,-1)
+      game board set_space(2,0,-1)
+
+      game should receive(display_board)
+      game should receive(print_game_over_message)
+
+      game play
       )
     )
