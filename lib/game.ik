@@ -39,7 +39,7 @@ Game play = method(
       take_turn
       )
     self illustrator display_board(self board)
-    self illustrator game_over_message(self board)
+    self illustrator print_game_over_message(self board)
     )
 
 Game take_turn = method(
@@ -57,4 +57,5 @@ Game player_by_turn = method(
 
 Game make_move = method(row, column,
     if(self board get_space(row, column) == 0,
-      self board set_space(row, column, player_by_turn marker_value)))
+      self board set_space(row, column, player_by_turn marker_value))
+    )

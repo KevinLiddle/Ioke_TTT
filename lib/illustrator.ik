@@ -29,3 +29,7 @@ Illustrator game_over_message = method(board,
 Illustrator display_board = method(board,
     draw(board) print
     )
+
+Illustrator print_game_over_message = method(board,
+    game_over_message(board) println
+    )

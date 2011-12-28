@@ -55,7 +55,7 @@ describe("Game",
       game board set_space(2,0,-1)
 
       game illustrator should receive display_board(game board)
-      game illustrator should receive game_over_message(game board)
+      game illustrator should receive print_game_over_message(game board)
 
       game play
       )
