@@ -1,5 +1,6 @@
 use("ispec")
 use("lib/illustrator")
+use("lib/board")
 
 describe("Illustrator",
 

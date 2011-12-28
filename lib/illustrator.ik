@@ -1,3 +1,5 @@
+use("lib/rules")
+
 Illustrator = Origin mimic
 
 Illustrator draw = method(board,
@@ -6,7 +8,8 @@ Illustrator draw = method(board,
       row each(space,
         illustration += "[" + space_marker(space) + "]")
       illustration += "\n")
-    illustration += "\n")
+    illustration += "\n"
+    )
 
 Illustrator space_marker = method(space_value,
     cond(
@@ -21,4 +24,8 @@ Illustrator game_over_message = method(board,
       Rules winner(board) == -1, "Player 2 wins!\n",
       Rules winner(board) == 0, "Cat's Game...\n"
       )
+    )
+
+Illustrator display_board = method(board,
+    draw(board) print
     )

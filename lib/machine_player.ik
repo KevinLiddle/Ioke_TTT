@@ -1,4 +1,5 @@
 use("lib/board")
+use("lib/rules")
 
 MachinePlayer = Origin mimic
 

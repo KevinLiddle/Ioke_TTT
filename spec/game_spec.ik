@@ -3,7 +3,7 @@ use("lib/game")
 
 describe("Game",
 
-    before(game = Game mimic("1"))
+    before(game = Game mimic("1", Illustrator mimic))
 
     it("initializes a game with a board",
       game board should not be nil
@@ -14,7 +14,7 @@ describe("Game",
       )
 
     it("draws the board when game is started",
-      Game should receive display_board
+      game illustrator should receive display_board(game board)
       game player1 should receive get_move(game board) andReturn([2,1])
       game take_turn
       )
@@ -36,13 +36,13 @@ describe("Game",
       )
 
     it("creates 1 machine player and 1 human player for game type 2",
-      game1 = Game mimic("2")
+      game1 = Game mimic("2", Illustrator mimic)
       game1 player1 kind should == "MachinePlayer"
       game1 player2 kind should == "HumanPlayer"
       )
 
     it("creates 1 human player and 1 machine player for game type 3",
-      game2 = Game mimic("3")
+      game2 = Game mimic("3", Illustrator mimic)
       game2 player1 kind should == "HumanPlayer"
       game2 player2 kind should == "MachinePlayer"
       )
@@ -54,8 +54,8 @@ describe("Game",
       game board set_space(1,0,-1)
       game board set_space(2,0,-1)
 
-      game should receive(display_board)
-      game should receive(print_game_over_message)
+      game illustrator should receive display_board(game board)
+      game illustrator should receive game_over_message(game board)
 
       game play
       )

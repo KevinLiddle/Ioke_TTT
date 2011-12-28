@@ -6,8 +6,9 @@ use("lib/machine_player")
 
 Game = Origin mimic
 
-Game initialize = method(game_type,
+Game initialize = method(game_type, illustrator,
     self board = Board mimic(3)
+    self illustrator = illustrator
     self player1 = nil
     self player2 = nil
     cond(
@@ -37,13 +38,13 @@ Game play = method(
     until(Rules game_over?(board),
       take_turn
       )
-    display_board
-    print_game_over_message
+    self illustrator display_board(self board)
+    self illustrator game_over_message(self board)
     )
 
 Game take_turn = method(
-    display_board
-    move = player_by_turn get_move(board)
+    self illustrator display_board(self board)
+    move = player_by_turn get_move(self board)
     make_move(move[0], move[1])
     )
 
@@ -57,10 +58,3 @@ Game player_by_turn = method(
 Game make_move = method(row, column,
     if(self board get_space(row, column) == 0,
       self board set_space(row, column, player_by_turn marker_value)))
-
-Game display_board = method(
-    Illustrator draw(self board) print)
-
-Game print_game_over_message = method(
-    Illustrator game_over_message(self board) println
-    )

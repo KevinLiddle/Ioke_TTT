@@ -1,5 +1,6 @@
 use("ispec")
 use("lib/human_player")
+use("lib/board")
 
 describe("HumanPlayer",
 

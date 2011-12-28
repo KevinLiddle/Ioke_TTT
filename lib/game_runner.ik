@@ -1,4 +1,5 @@
 use("lib/game")
+use("lib/illustrator")
 
 GameRunner = Origin mimic
 
@@ -7,7 +8,7 @@ GameRunner get_game_type = method(
     game_type = System in read asText
     if(game_type == "0",
       System exit,
-      Game mimic(game_type)
+      Game mimic(game_type, Illustrator mimic)
       )
     )
 
